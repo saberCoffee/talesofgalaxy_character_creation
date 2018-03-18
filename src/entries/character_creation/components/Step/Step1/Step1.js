@@ -11,13 +11,12 @@ class Step1 extends Step {
   }
 
   render() {
-    let { character, formData, updateForm } = this.props;
+    let { rpInfos, character, formData, updateForm } = this.props;
 
     return (
       <React.Fragment>
         <div className="form-row">
           <FormField 
-            id="avatar" 
             fieldData={formData.avatar.data}
             fieldConfig={formData.avatar.config}
             updateForm={updateForm}          
@@ -25,13 +24,11 @@ class Step1 extends Step {
         </div>
         <div className="form-row">
           <FormField 
-            id="realname"
             fieldData={formData.realname.data}
             fieldConfig={formData.realname.config}
             updateForm={updateForm}
           />
           <FormField 
-            id="surname"
             fieldData={formData.surname.data}
             fieldConfig={formData.surname.config}
             updateForm={updateForm}
@@ -39,25 +36,35 @@ class Step1 extends Step {
         </div>          
         <div className="form-row">
           <FormField 
-            id="firstname"
             fieldData={formData.firstname.data}
             fieldConfig={formData.firstname.config}
             updateForm={updateForm}
           />
           <FormField 
-            id="lastname"
             fieldData={formData.lastname.data}
             fieldConfig={formData.lastname.config}
             updateForm={updateForm}
           />    
         </div>    
-        <div className="form-row">
+        <div className="form-row"> 
           <FormField 
-            id="gender"
+            fieldData={formData.species.data}
+            fieldConfig={formData.species.config}
+            updateForm={updateForm}
+          />    
+          <FormField 
             fieldData={formData.gender.data}
             fieldConfig={formData.gender.config}
             updateForm={updateForm}
-          />    
+          />   
+        </div>
+        <div className="form-row">
+          <FormField 
+            rpInfos={rpInfos}
+            fieldData={formData.birthdate.data}
+            fieldConfig={formData.birthdate.config}
+            updateForm={updateForm}
+          />  
         </div>
       </React.Fragment>
     );

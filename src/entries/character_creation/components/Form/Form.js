@@ -48,12 +48,12 @@ class Form extends React.Component {
   }
 
   render() {
-    let { data: { character, step1 }, currentStep } = this.state;
+    let { data: { rpInfos, character, step1 }, currentStep } = this.state;
 
     switch (currentStep)
     {
       case 1:
-        return <Step1 character={character} formData={step1} updateForm={this.updateForm} />;
+        return <Step1 rpInfos={rpInfos} character={character} formData={step1} updateForm={this.updateForm} />;
         break;
     }
   }

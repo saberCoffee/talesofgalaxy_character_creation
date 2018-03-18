@@ -28,6 +28,9 @@ let dataConfig = {};
 const jsonFiles = importAll(require.context('./json/'));
 
 dataConfig = {
+  rpInfos: {
+    'url': window.get_rp_infos_by_ajax_path
+  },
   character: {
     'url': jsonFiles['character.json']
   },
@@ -48,14 +51,10 @@ const getData = (dataName) => {
       resolve();
     }
 
-    if (dataConfig[dataName].hasOwnProperty('spFunction')) {
-      spFunction(result => {
-        callback(result);
-      });
+    if (dataConfig[dataName].hasOwnProperty('getFromDb')) {
+      dataConfig[dataName].getFromDb(result => callback(result));
     } else {
-      getJson(dataConfig[dataName].url, (result) => {
-        callback(result);
-      });
+      getJson(dataConfig[dataName].url, result => callback(result));
     }
 	});
 };

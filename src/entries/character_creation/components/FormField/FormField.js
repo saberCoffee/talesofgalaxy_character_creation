@@ -14,15 +14,28 @@ class FormField extends React.Component {
   handleChange = (newValue) => {
     // Met à jour la valeur actuelle d'un champ
     this.props.updateForm({
-      id: this.props.id,
+      id: this.props.fieldConfig.id,
       newValue
     });
+  }
+
+  /**
+   * Créé un lien entre la valeur du formField et une valeur
+   */
+  calculeLinkTo = () => {
+    const { 
+      fieldData : { currentValue },
+      fieldConfig : { linkTo },
+      rpInfos
+    } = this.props;
+
+    return rpInfos[linkTo] - currentValue;
   }
   
   render() {
     const { 
-      fieldData : { hasError },
-      fieldConfig : { type, label, errorMsg, mandatory, inlineBlock, info }
+      fieldData : { hasError, currentValue },
+      fieldConfig : { id, type, label, errorMsg, mandatory, inlineBlock, linkTo }
     } = this.props;
 
     const className = [];
@@ -35,19 +48,22 @@ class FormField extends React.Component {
       className.push('form-group');      
     }
 
-    return(
+    return (
       <div className={className.join(' ')}>
-        {label && <label htmlFor={`form_${label.toLowerCase()}`}>{label}{mandatory && <span>*</span>}</label>}        
+        {label && 
+        <label htmlFor={`form_${id.toLowerCase()}`}>
+          {label}{mandatory && <span>*</span>} {currentValue && linkTo && !isNaN(this.calculeLinkTo()) && `(${this.calculeLinkTo()} ans)`}      
+        </label>
+        }        
         {{
           picture: <span>Picture...</span>,
           select: <Select fieldData={this.props.fieldData} fieldConfig={this.props.fieldConfig} handleChange={this.handleChange} />,
           textarea: <Editor fieldData={this.props.fieldData} fieldConfig={this.props.fieldConfig} handleChange={this.handleChange} updateForm={this.props.updateForm} />,
           text: <Input fieldData={this.props.fieldData} fieldConfig={this.props.fieldConfig} handleChange={this.handleChange} />,
         }[type]}
-        {hasError && <div className={'form-errorMsg'}>{errorMsg}</div>}
-        {info &&<div className={'help-block'}><span className="glyphicon glyphicon-info-sign"></span> {info}</div>}        
+        {hasError && <div className={'form-errorMsg'}>{errorMsg}</div>}    
       </div>
-    )
+    );
   }
 }
 
