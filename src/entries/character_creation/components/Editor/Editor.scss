@@ -1,0 +1,38 @@
+.editor {
+  display: inline-block;
+  width: 500px;
+  min-width: 500px;
+  max-width: 500px;
+  height: 110px;
+  min-height: 110px;
+  max-height: 110px;
+
+  background: #fff;
+  border: 0;
+}
+
+textarea {
+  width: 100%;
+  height: 100%;
+  padding: 7px 10px;
+  
+  font-size: 14px;
+  font-family: "Arial";
+  resize: none;
+
+  &:focus {
+    outline: none;
+  }
+}
+
+.placeholder, .placeholder textarea {
+  color: #9c9e9f;
+  font-style: italic;
+}
+
+.richtext {
+  .tool {
+    margin-right: 5px;
+    font-family: "Georgia", serif;
+  }
+}

@@ -1,0 +1,50 @@
+{
+  "name": "create-chararacter-app",
+  "version": "0.1.0",
+  "main": "index.js",
+  "babel": {
+    "presets": [
+      "es2015",
+      "react"
+    ]
+  },
+  "dependencies": {
+    "babel-preset-react": "^6.24.1",
+    "bluebird": "^3.4.6",
+    "react": "^16.2.0",
+    "react-dom": "^16.2.0",
+    "superagent": "^3.6.2"
+  },
+  "devDependencies": {
+    "autoprefixer": "^7.1.4",
+    "babel-core": "^6.26.0",
+    "babel-loader": "^7.1.2",
+    "babel-plugin-transform-class-properties": "^6.24.1",
+    "babel-polyfill": "^6.9.1",
+    "babel-preset-es2015": "^6.9.0",
+    "css-loader": "^0.28.7",
+    "directory-named-webpack-plugin": "^2.2.3",
+    "extract-text-webpack-plugin": "^3.0.0",
+    "file-loader": "^1.1.4",
+    "html-webpack-plugin": "^2.30.1",
+    "image-webpack-loader": "^3.0.0",
+    "json-loader": "^0.5.4",
+    "node-sass": "^4.5.3",
+    "postcss-loader": "^2.0.6",
+    "sass-loader": "^6.0.6",
+    "string-replace-webpack-plugin": "0.1.3",
+    "style-loader": "^0.18.2",
+    "webpack": "^3.6.0",
+    "webpack-dev-server": "^2.7.1"
+  },
+  "scripts": {
+    "start": "webpack-dev-server -d --content-base public/ --progress --colors",
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "webpack --watch --display-chunks",
+    "serve": "webpack-dev-server --inline",
+    "prod": "npm run clean && webpack --display-chunks --colors",
+    "clean": "rimraf dist/*",
+    "stats": "webpack --profile --json > stats.json",
+    "doc": "./node_modules/.bin/esdoc -c ./esdoc.json"
+  }
+}
