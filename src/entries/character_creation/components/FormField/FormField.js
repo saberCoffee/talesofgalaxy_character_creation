@@ -53,8 +53,7 @@ class FormField extends React.Component {
         {label && 
         <label htmlFor={`form_${id.toLowerCase()}`}>
           {label}{mandatory && <span>*</span>} {currentValue && linkTo && !isNaN(this.calculeLinkTo()) && `(${this.calculeLinkTo()} ans)`}      
-        </label>
-        }        
+        </label>}        
         {{
           picture: <span>Picture...</span>,
           select: <Select fieldData={this.props.fieldData} fieldConfig={this.props.fieldConfig} handleChange={this.handleChange} />,

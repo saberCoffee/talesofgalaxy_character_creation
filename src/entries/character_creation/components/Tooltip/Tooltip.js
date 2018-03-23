@@ -9,7 +9,7 @@ class Tooltip extends React.Component {
     this.state = {
       top: 0,
       left: 0,
-      maxWidth: 0
+      width: 0
     };
   }
 
@@ -27,18 +27,24 @@ class Tooltip extends React.Component {
 
     const rect = element.getBoundingClientRect();
 
-    this.setState({
-      top: rect.top + rect.height + 5,
-      left: rect.left,
-      maxWidth: rect.width
-    });
+    let top  = rect.top + rect.height + 5;
+    let left = rect.left;    
+    let width = rect.width;
+
+    let style = {
+      top,
+      left,
+      width
+    };
+
+    this.setState(style);
   }
 
   render() {
-    let { top, left, maxWidth } = this.state;
+    let { top, left, width } = this.state;
 
     return(
-      <div className="help-tooltip" style={{ top, left, maxWidth }}>{this.props.children}</div>
+      <div className="help-tooltip" style={{ top, left, width }}>{this.props.children}</div>
     );
   }
 }

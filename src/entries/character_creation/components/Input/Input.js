@@ -16,23 +16,7 @@ class Input extends React.Component {
     };
   }
 
-  // componentDidMount() {
-  //   document.addEventListener('click', (e) => {
-  //     if (!e.target.contains(this.inputEl)) {
-  //       this.hideTooltip()
-  //     }
-  //   });
-  // }
-
-  // componentWillUnmount() {
-  //   document.removeEventListener('click', (e) => {
-  //     if (!e.target.contains(this.inputEl)) {
-  //       this.hideTooltip()
-  //     }
-  //   });
-  // }
-
-  handleChange = (e) => {  
+  handleChange = (e) => {
     const { 
       fieldConfig : { label, placeholder, regex },
     } = this.props;
@@ -57,7 +41,7 @@ class Input extends React.Component {
     this.setState({displayTooltip: false});
   }
 
-  handleFocus = () => {
+  handleMouseEnter = () => {
     const { fieldConfig : { info }} = this.props;
 
     if (info) {
@@ -65,7 +49,7 @@ class Input extends React.Component {
     }
   }
 
-  handleBlur = () => {
+  onMouseLeave = () => {
     const { fieldConfig : { info }} = this.props;
 
     if (info) {
@@ -87,12 +71,11 @@ class Input extends React.Component {
           ref={input => { this.inputEl = input; }}
           id={(label) ? `form_${id.toLowerCase()}` : null} className={`form-control ${(info) ? 'has-info' : null}`}
           type="text" value={currentValue} autoComplete="new-password" placeholder={(placeholder) ? placeholder : null}
-          onFocus={this.handleFocus} onBlur={this.handleBlur} onChange={this.handleChange} 
+          onChange={this.handleChange} 
         />
+        {info && <span class="input-info" onMouseEnter={this.handleMouseEnter} onMouseLeave={this.handleMouseLeave}>?</span>}
         {displayTooltip && 
-        <Tooltip element={this.inputEl}>
-          <div className="input-info">{info}</div>
-        </Tooltip>}
+        <Tooltip element={this.inputEl}>{info}</Tooltip>}
       </div>
     );
   }

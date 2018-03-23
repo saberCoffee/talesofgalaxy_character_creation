@@ -15,13 +15,13 @@ class Step1 extends Step {
 
     return (
       <React.Fragment>
-        <div className="form-row">
+        {/* <div className="form-row">
           <FormField 
             fieldData={formData.avatar.data}
             fieldConfig={formData.avatar.config}
             updateForm={updateForm}          
           />
-        </div>
+        </div> */}
         <div className="form-row">
           <FormField 
             fieldData={formData.realname.data}
