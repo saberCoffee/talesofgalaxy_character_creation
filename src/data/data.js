@@ -5,7 +5,8 @@ import Promise from 'bluebird';
 import getJson from 'helpers/getJson';
 import importAll from 'helpers/importAll';
 
-// JSON
+// Data
+import questionsList from './questionsList';
 
 const allData = {};
 
@@ -28,9 +29,10 @@ let dataConfig = {};
 const jsonFiles = importAll(require.context('./json/'));
 
 dataConfig = {
-  rpInfos: {
-    'url': window.get_rp_infos_by_ajax_path
-  },
+  // rpInfos: {
+  //   'url': window.get_rp_infos_by_ajax_path
+  // },
+  questionsList,
   character: {
     'url': jsonFiles['character.json']
   },
@@ -53,8 +55,10 @@ const getData = (dataName) => {
 
     if (dataConfig[dataName].hasOwnProperty('getFromDb')) {
       dataConfig[dataName].getFromDb(result => callback(result));
-    } else {
+    } else if (dataConfig[dataName].hasOwnProperty('url')) {
       getJson(dataConfig[dataName].url, result => callback(result));
+    } else {
+      callback(dataConfig[dataName]);
     }
 	});
 };
