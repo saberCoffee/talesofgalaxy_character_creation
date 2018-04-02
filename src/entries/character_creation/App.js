@@ -5,9 +5,6 @@ import React, { Component } from 'react';
 import { get } from 'data';
 import Question from './components/Question';
 
-// Utils
-import getQuestion from 'utils/questions/getQuestion';
-
 // Styles
 import styles from './App.scss';
 
@@ -61,8 +58,8 @@ class App extends Component {
   }
 
   submitAnwser = ({ option }) => {
-    let { character, questionsList, currentQuestion, value: text } = this.state;
-    let question = getQuestion({ currentQuestion, questionsList });
+    let { character, questionsList, currentQuestion: { id, version }, value: text } = this.state;
+    let question = questionsList[id][version];
 
     let callback = () => {
       let newCharacter = Object.assign({}, character);
@@ -86,9 +83,13 @@ class App extends Component {
   }
 
   render() {
-    let { character, questionsList, currentQuestion, value } = this.state;
-    console.log(this.state)
-    let questionModel = getQuestion({ currentQuestion, questionsList });
+    let { character, questionsList, currentQuestion: { id, version }, value } = this.state;
+
+    let questionModel = questionsList[id][version];
+
+    console.log(questionsList)
+    console.log(id)
+    console.log(version)
 
     return (
       <div className={styles.App}>

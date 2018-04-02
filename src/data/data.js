@@ -6,7 +6,7 @@ import getJson from 'helpers/getJson';
 import importAll from 'helpers/importAll';
 
 // Data
-import questionsList from './questionsList';
+import QuestionsList from './Questions/QuestionsList';
 
 const allData = {};
 
@@ -32,7 +32,7 @@ dataConfig = {
   // rpInfos: {
   //   'url': window.get_rp_infos_by_ajax_path
   // },
-  questionsList,
+  questionsList: QuestionsList,
   character: {
     'url': jsonFiles['character.json']
   },
